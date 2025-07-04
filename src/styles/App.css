@@ -5,9 +5,9 @@
 :root {
     --primary-color: #4f46e5;
     --background: #f9fafb;
-    --text: #1f2937;
+    --text: #000000;
     --white: #ffffff;
-    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.01);
 }
 
 * {
@@ -57,6 +57,7 @@ h2 {
         padding: 10px;
     }
 
+    .add-task-btn,
     .logout {
         font-size: 0.8rem;
         padding: 3px 6px;
