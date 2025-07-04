@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
-import type { Task } from "../@types/Task.ts";
-import type { DashboardProps } from "../@types/props.ts";
+import TaskList from './TaskList';
+import type {Task} from "../@types/Task";
+import type {DashboardProps} from "../@types/props";
 
-const Dashboard: React.FC<DashboardProps> = ({ onLogout }: DashboardProps) => {
+const Dashboard: React.FC<DashboardProps> = ({onLogout}) => {
     const [showForm, setShowForm] = useState<boolean>(false);
     const username: string | null = localStorage.getItem('username');
     const [tasks, setTasks] = useState<Task[]>(() => {
@@ -15,41 +16,36 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }: DashboardProps) => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
-    const handleAddTask: (task: Task) => void = (task: Task): void => {
+    const handleAddTask: (task: Task) => void = (task: Task) => {
         setTasks([task, ...tasks]);
     };
+
+    const handleUpdateTask: (updatedTask: Task) => void = (updatedTask: Task) => {
+        setTasks(tasks.map(t => t.id === updatedTask.id ? updatedTask : t));
+    };
+
+    const handleDeleteTask: (taskId: number) => void = (taskId: number) => {
+        setTasks(tasks.filter(t => t.id !== taskId));
+    };
+
 
     return (
         <>
             <div className="dashboard-navbar">
                 <span className="username">Welcome, {username}!</span>
                 <div className="nav-actions">
-                    <button className="add-task-btn" onClick={() => setShowForm((prev) => !prev)}>+</button>
+                    <button className="add-task-btn" onClick={(): void => setShowForm((prev) => !prev)}>+</button>
                     <button className="logout" onClick={onLogout}>Logout</button>
                 </div>
             </div>
 
             <div className="dashboard-container">
-                {showForm && <TaskForm onAddTask={handleAddTask} />}
-
-                <div className="task-list">
-                    {tasks.length === 0 ? (
-                        <p>No tasks yet.</p>
-                    ) : (
-                        tasks.map((task) => (
-                            <div key={task.id} className="task-item">
-                                <div className="task-header">
-                                    <h3>{task.title}</h3>
-                                    <span className="task-date">{new Date(task.createdAt).toLocaleString()}</span>
-                                </div>
-                                {task.description && <p>{task.description}</p>}
-                                <span className={`status ${task.completed ? 'done' : 'pending'}`}>
-                                    {task.completed ? '✅ Completed' : '⏳ Pending'}
-                                </span>
-                            </div>
-                        ))
-                    )}
-                </div>
+                {showForm && <TaskForm onAddTask={handleAddTask}/>}
+                <TaskList
+                    tasks={tasks}
+                    onUpdateTask={handleUpdateTask}
+                    onDeleteTask={handleDeleteTask}
+                />
             </div>
         </>
     );
