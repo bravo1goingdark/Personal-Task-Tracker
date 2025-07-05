@@ -13,8 +13,10 @@ export interface TaskFormProps {
 
 export interface TaskListProps {
     tasks: Task[];
+    filter: 'all' | 'completed' | 'pending';
+    searchQuery: string;
     onUpdateTask: (task: Task) => void;
     onDeleteTask: (id: number) => void;
-    filter: 'all' | 'completed' | 'pending';
 }
+
 

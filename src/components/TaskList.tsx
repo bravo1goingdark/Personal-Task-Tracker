@@ -1,7 +1,7 @@
 import React, {type ChangeEvent, useState} from 'react';
 import type {TaskListProps, Task} from '../@types/Task';
 
-const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, filter}) => {
+const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, filter, searchQuery}: TaskListProps) => {
     const [editTaskId, setEditTaskId] = useState<number | null>(null);
     const [editTitle, setEditTitle] = useState('');
     const [editDescription, setEditDescription] = useState('');
@@ -32,11 +32,17 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
         }
     };
 
-    const filteredTasks: Task[] = tasks.filter((task: Task): boolean | undefined => {
-        if (filter === 'all') return true;
-        if (filter === 'completed') return task.completed;
-        if (filter === 'pending') return !task.completed;
-    });
+    const filteredTasks = tasks
+        .filter((task) => {
+            if (filter === 'all') return true;
+            if (filter === 'completed') return task.completed;
+            if (filter === 'pending') return !task.completed;
+        })
+        .filter((task) =>
+            task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            task.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
 
     const isOverdue: (dueDate?: string | undefined) => boolean = (dueDate?: string): boolean => {
         if (!dueDate) return false;
@@ -50,7 +56,7 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
             {filteredTasks.length === 0 ? (
                 <p>No tasks to show.</p>
             ) : (
-                filteredTasks.map((task: Task)  => (
+                filteredTasks.map((task: Task) => (
                     <div key={task.id} className="task-item">
                         {editTaskId === task.id ? (
                             <>

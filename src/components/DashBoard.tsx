@@ -5,6 +5,7 @@ import TaskFilter from "./TaskFilter.tsx";
 import type {Task} from "../@types/Task";
 import type {DashboardProps} from "../@types/props";
 import {getInitialTasks} from "../utils/storage.ts";
+import SearchBar from "./SearchBar.tsx";
 
 const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
     const [showForm, setShowForm] = useState<boolean>(false);
@@ -12,6 +13,8 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
     const [tasks, setTasks] = useState<Task[]>((): Task[] => getInitialTasks());
     const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
     const [theme, setTheme] = useState(() : string => localStorage.getItem('theme') || 'light');
+    const [searchQuery, setSearchQuery] = useState('');
+
 
     const counts = {
         all: tasks.length,
@@ -62,12 +65,14 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
             <div className="dashboard-container">
                 {showForm && <TaskForm onAddTask={handleAddTask}/>}
 
+                <SearchBar query={searchQuery} onChange={setSearchQuery} />
                 <TaskFilter filter={filter} onFilterChange={setFilter} counts={counts}/>
                 <TaskList
                     tasks={tasks}
+                    filter={filter}
+                    searchQuery={searchQuery}
                     onUpdateTask={handleUpdateTask}
                     onDeleteTask={handleDeleteTask}
-                    filter={filter}
                 />
 
             </div>
