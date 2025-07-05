@@ -4,6 +4,7 @@ export interface Task {
     description?: string;
     completed: boolean;
     createdAt: string;
+    dueDate?: string;
 }
 
 export interface TaskFormProps {

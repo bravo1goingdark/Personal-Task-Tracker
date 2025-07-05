@@ -73,3 +73,13 @@
 .task-actions button:hover {
     background-color: #d1d5db;
 }
+.due-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0.5rem 0;
+}
+
+.due-date.overdue {
+    color: #dc2626;
+    font-weight: 600;
+}
