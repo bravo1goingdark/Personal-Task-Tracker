@@ -1,13 +1,8 @@
 import React, {type ChangeEvent, useState} from 'react';
-import type {Task} from '../@types/Task';
+import type {TaskListProps, Task} from '../@types/Task';
 
-interface TaskListProps {
-    tasks: Task[];
-    onUpdateTask: (updatedTask: Task) => void;
-    onDeleteTask: (taskId: number) => void;
-}
 
-const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask}) => {
+const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, filter}) => {
     const [editTaskId, setEditTaskId] = useState<number | null>(null);
     const [editTitle, setEditTitle] = useState('');
     const [editDescription, setEditDescription] = useState('');
@@ -38,10 +33,18 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask}) 
         }
     };
 
+    const filteredTasks = tasks.filter((task) => {
+        if (filter === 'all') return true;
+        if (filter === 'completed') return task.completed;
+        if (filter === 'pending') return !task.completed;
+    });
+
     return (
-        <div className="task-list"> {tasks.length === 0 ? (<p>No tasks yet.</p>)
-            : (
-                tasks.map((task: Task) => (
+        <div className="task-list">
+            {filteredTasks.length === 0 ? (
+                <p>No tasks to show.</p>
+            ) : (
+                filteredTasks.map((task: Task) => (
                     <div key={task.id} className="task-item">
                         {editTaskId === task.id ? (
                             <>

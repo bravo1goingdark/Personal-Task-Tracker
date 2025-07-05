@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
+import TaskFilter from "./TaskFilter.tsx";
 import type {Task} from "../@types/Task";
 import type {DashboardProps} from "../@types/props";
 import {getInitialTasks} from "../utils/storage.ts";
@@ -8,7 +9,14 @@ import {getInitialTasks} from "../utils/storage.ts";
 const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
     const [showForm, setShowForm] = useState<boolean>(false);
     const username: string | null = localStorage.getItem('username');
-    const [tasks, setTasks] = useState<Task[]>(() => getInitialTasks());
+    const [tasks, setTasks] = useState<Task[]>((): Task[] => getInitialTasks());
+    const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
+    const counts = {
+        all: tasks.length,
+        completed: tasks.filter(t => t.completed).length,
+        pending: tasks.filter(t => !t.completed).length,
+    };
+
 
     useEffect((): void => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -40,12 +48,16 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
             </div>
 
             <div className="dashboard-container">
-                {showForm && <TaskForm onAddTask={handleAddTask} />}
+                {showForm && <TaskForm onAddTask={handleAddTask}/>}
+
+                <TaskFilter filter={filter} onFilterChange={setFilter} counts={counts}/>
                 <TaskList
                     tasks={tasks}
                     onUpdateTask={handleUpdateTask}
                     onDeleteTask={handleDeleteTask}
+                    filter={filter}
                 />
+
             </div>
         </>
     );

@@ -1,6 +1,7 @@
 @import './Navbar.css';
 @import './TaskForm.css';
 @import './TaskList.css';
+@import "TaskFilter.css";
 
 :root {
     --primary-color: #4f46e5;

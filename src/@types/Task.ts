@@ -12,4 +12,8 @@ export interface TaskFormProps {
 
 export interface TaskListProps {
     tasks: Task[];
+    onUpdateTask: (task: Task) => void;
+    onDeleteTask: (id: number) => void;
+    filter: 'all' | 'completed' | 'pending';
 }
+
