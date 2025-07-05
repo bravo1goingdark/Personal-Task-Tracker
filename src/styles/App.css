@@ -10,6 +10,22 @@
     --white: #ffffff;
     --shadow: rgba(0, 0, 0, 0.01);
 }
+body.light {
+    --primary-color: #4f46e5;
+    --background: #f9fafb;
+    --text: #1f2937;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+    --primary-color: #6366f1;
+    --background: #1f2937;
+    --text: #f9fafb;
+    --white: #111827;
+    --shadow: rgba(255, 255, 255, 0.1);
+}
+
 
 * {
     box-sizing: border-box;
@@ -60,7 +76,7 @@ h2 {
 
     .add-task-btn,
     .logout {
-        font-size: 0.8rem;
+        font-size: 1rem;
         padding: 3px 6px;
     }
 

@@ -11,6 +11,8 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
     const username: string | null = localStorage.getItem('username');
     const [tasks, setTasks] = useState<Task[]>((): Task[] => getInitialTasks());
     const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
+    const [theme, setTheme] = useState(() : string => localStorage.getItem('theme') || 'light');
+
     const counts = {
         all: tasks.length,
         completed: tasks.filter(t => t.completed).length,
@@ -21,6 +23,13 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
     useEffect((): void => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
+
+    useEffect(() => {
+        document.body.classList.remove('light', 'dark');
+        document.body.classList.add(theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
 
     const handleAddTask: (task: Task) => void = (task: Task) => {
         setTasks([task, ...tasks]);
@@ -44,6 +53,9 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
                             onClick={(): void => setShowForm((prev: boolean): boolean => !prev)}>Add Task
                     </button>
                     <button className="logout" onClick={onLogout}>Logout</button>
+                    <button className="theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                        {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+                    </button>
                 </div>
             </div>
 

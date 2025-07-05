@@ -29,7 +29,7 @@
     border: 1px solid var(--primary-color);
     padding: 10px 15px;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
@@ -52,4 +52,20 @@
 
 .add-task-btn:hover {
     background-color: #4338ca;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 13px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
