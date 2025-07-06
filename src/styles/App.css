@@ -2,6 +2,7 @@
 @import './TaskForm.css';
 @import './TaskList.css';
 @import "TaskFilter.css";
+@import "animation.css";
 
 :root {
     --primary-color: #4f46e5;
@@ -88,3 +89,13 @@ h2 {
         width: 100%;
     }
 }
+@media (max-width: 768px) {
+    .task-item {
+        width: 100%;
+    }
+
+    .dashboard-container {
+        padding: 1rem;
+    }
+}
+

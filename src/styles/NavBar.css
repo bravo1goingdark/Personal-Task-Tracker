@@ -12,7 +12,7 @@
 }
 
 .username {
-    font-size:2rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--text);
 }
@@ -23,15 +23,21 @@
     align-items: center;
 }
 
+.nav-actions button {
+    min-width: 90px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
 .logout {
     background-color: transparent;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
 }
 
 .logout:hover {
@@ -43,11 +49,7 @@
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
-    padding: 10px 15px;
-    font-size: 1rem;
     font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .add-task-btn:hover {
@@ -58,14 +60,36 @@
     background: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    padding: 8px 13px;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
 }
 
 .theme-toggle:hover {
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+/* Responsive layout */
+@media (max-width: 480px) {
+    .dashboard-navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+    }
+
+    .nav-actions {
+        justify-content: space-between;
+        width: 100%;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-actions button {
+        flex: 1 1 30%;
+        min-width: 80px;
+    }
+
+    .username {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
 }

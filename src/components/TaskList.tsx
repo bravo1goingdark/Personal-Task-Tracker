@@ -3,8 +3,8 @@ import type {TaskListProps, Task} from '../@types/Task';
 
 const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, filter, searchQuery}: TaskListProps) => {
     const [editTaskId, setEditTaskId] = useState<number | null>(null);
-    const [editTitle, setEditTitle] = useState('');
-    const [editDescription, setEditDescription] = useState('');
+    const [editTitle, setEditTitle] = useState<string>('');
+    const [editDescription, setEditDescription] = useState<string>('');
 
     const startEditing = (task: Task) => {
         setEditTaskId(task.id);
@@ -32,13 +32,13 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
         }
     };
 
-    const filteredTasks = tasks
-        .filter((task) => {
+    const filteredTasks: Task[] = tasks
+        .filter((task: Task): boolean | undefined => {
             if (filter === 'all') return true;
             if (filter === 'completed') return task.completed;
             if (filter === 'pending') return !task.completed;
         })
-        .filter((task) =>
+        .filter((task: Task): boolean | undefined =>
             task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             task.description?.toLowerCase().includes(searchQuery.toLowerCase())
         );
@@ -77,8 +77,8 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
                                 <div className="task-header">
                                     <h3>{task.title}</h3>
                                     <span className="task-date">
-                    {new Date(task.createdAt).toLocaleString()}
-                  </span>
+                                      {new Date(task.createdAt).toLocaleString()}
+                                    </span>
                                 </div>
 
                                 {task.description && <p>{task.description}</p>}
@@ -91,17 +91,18 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
 
                                 <div className="task-badges">
                                     <span className={`status ${task.completed ? 'done' : 'pending'}`}>
-                  {task.completed ? '✅ Completed' : '⏳ Pending'}
-                </span>
+                                         {task.completed ? '✅ Completed' : '⏳ Pending'}
+                                    </span>
 
                                     {task.priority && (
                                         <span className={`priority-badge ${task.priority}`}>
-    {task.priority === 'low' && '🟢 Low'}
+                                            {task.priority === 'low' && '🟢 Low'}
                                             {task.priority === 'medium' && '🟡 Medium'}
                                             {task.priority === 'high' && '🔴 High'}
-  </span>
+                                        </span>
                                     )}
                                 </div>
+
                                 {task.tags && task.tags.length > 0 && (
                                     <div className="task-tags">
                                         {task.tags.map((tag, index) => (
@@ -109,7 +110,6 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
                                         ))}
                                     </div>
                                 )}
-
 
 
                                 <div className="task-actions">

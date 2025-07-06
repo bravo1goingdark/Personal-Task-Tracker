@@ -2,14 +2,14 @@ import React, {type ChangeEvent, useState} from 'react';
 import type {Task, TaskFormProps} from "../@types/Task";
 
 const TaskForm: React.FC<TaskFormProps> = ({onAddTask}: TaskFormProps) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [dueDate, setDueDate] = useState('');
+    const [title, setTitle] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [dueDate, setDueDate] = useState<string>('');
     const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
-    const [tags, setTags] = useState('');
+    const [tags, setTags] = useState<string>('');
 
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) : void => {
         e.preventDefault();
         if (!title.trim()) return;
 
