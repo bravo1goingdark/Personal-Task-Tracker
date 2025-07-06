@@ -5,6 +5,7 @@ export interface Task {
     completed: boolean;
     createdAt: string;
     dueDate?: string;
+    priority? : 'low' | 'medium' | 'high';
 }
 
 export interface TaskFormProps {

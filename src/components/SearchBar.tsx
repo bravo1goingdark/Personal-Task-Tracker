@@ -2,7 +2,7 @@ import React, {type ChangeEvent} from 'react';
 import type {SearchBarProps} from "../@types/props.ts";
 
 
-const SearchBar: React.FC<SearchBarProps> = ({ query, onChange }) => {
+const SearchBar: React.FC<SearchBarProps> = ({query, onChange}: SearchBarProps) => {
     return (
         <div className="search-bar">
             <input
@@ -10,7 +10,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ query, onChange }) => {
                 type="text"
                 placeholder="🔍 Search tasks..."
                 value={query}
-                onChange={(e : ChangeEvent<HTMLInputElement>) : void => onChange(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e.target.value)}
             />
         </div>
     );
