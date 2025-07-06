@@ -1,10 +1,9 @@
 .dashboard-container {
     width: 95%;
-    max-width: 1200px; /* Increased from 600px or similar */
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
 }
-
 
 .task-list {
     display: flex;
@@ -14,9 +13,8 @@
     width: 100%;
 }
 
-
 .task-item {
-    width: calc(33.333% - 1rem);  /* 3 items per row */
+    width: calc(33.333% - 1rem);
     min-width: 300px;
     background: var(--white);
     border: 1px solid #e5e7eb;
@@ -25,21 +23,81 @@
     box-shadow: 0 2px 6px var(--shadow);
 }
 
+/* Responsive widths */
+@media (max-width: 768px) {
+    .task-item {
+        width: calc(50% - 1rem);
+    }
+}
 
+@media (max-width: 480px) {
+    .task-item {
+        width: 100%;
+    }
+}
+
+/* Header section: Title and date side-by-side */
 .task-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Top align */
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.task-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
 }
 
 .task-date {
-    font-size: 0.8rem;
+    text-align: right;
+    font-size: 0.85rem;
     color: #6b7280;
+    line-height: 1.3;
+    white-space: nowrap;
+    margin-left: 0.5rem;
+}
+
+.task-date small {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 2px;
+    color: #9ca3af;
+}
+
+/* Description */
+.task-item p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    color: var(--text);
+}
+
+/* Due Date */
+.due-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0.5rem 0;
+}
+
+.due-date.overdue {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+/* Status and Priority Row */
+.task-badges {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .status {
-    margin-top: 0.5rem;
-    display: inline-block;
     font-size: 0.85rem;
 }
 
@@ -51,6 +109,50 @@
     color: #d97706;
 }
 
+/* Priority Badges */
+.priority-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 12px;
+    text-transform: capitalize;
+}
+
+.priority-badge.low {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.priority-badge.medium {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.priority-badge.high {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Tags Section */
+.task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag-badge {
+    padding: 4px 8px;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* Action Buttons */
 .task-actions {
     margin-top: 1rem;
     display: flex;
@@ -70,65 +172,4 @@
 
 .task-actions button:hover {
     background-color: #d1d5db;
-}
-.due-date {
-    font-size: 0.85rem;
-    color: #6b7280;
-    margin: 0.5rem 0;
-}
-
-.due-date.overdue {
-    color: #dc2626;
-    font-weight: 600;
-}
-
-.priority-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    border-radius: 12px;
-    text-transform: capitalize;
-    margin-top: 0.5rem;
-}
-.task-badges {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-
-.priority-badge.low {
-    background-color: #d1fae5;
-    color: #065f46;
-}
-
-.priority-badge.medium {
-    background-color: #fef3c7;
-    color: #92400e;
-}
-
-.priority-badge.high {
-    background-color: #fee2e2;
-    color: #991b1b;
-}
-
-.task-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-.tag-badge {
-    padding: 4px 8px;
-    background-color: #e0e7ff;
-    color: #3730a3;
-    font-size: 0.75rem;
-    border-radius: 12px;
-    font-weight: 500;
-    text-transform: capitalize;
 }

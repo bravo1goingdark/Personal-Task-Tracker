@@ -75,11 +75,14 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
                         ) : (
                             <>
                                 <div className="task-header">
-                                    <h3>{task.title}</h3>
-                                    <span className="task-date">
-                                      {new Date(task.createdAt).toLocaleString()}
-                                    </span>
+                                    <h3 className="task-title">{task.title}</h3>
+                                    <div className="task-date">
+                                        <span>{new Date(task.createdAt).toLocaleDateString()}</span>
+                                        <small>{new Date(task.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
+                                    </div>
                                 </div>
+
+
 
                                 {task.description && <p>{task.description}</p>}
 
