@@ -6,6 +6,8 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask}: TaskFormProps) => {
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
+    const [tags, setTags] = useState('');
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,6 +21,10 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask}: TaskFormProps) => {
             createdAt: new Date().toISOString(),
             dueDate: dueDate || undefined,
             priority,
+            tags: tags
+                .split(',')
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length > 0),
         };
 
         onAddTask(newTask);
@@ -26,6 +32,7 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask}: TaskFormProps) => {
         setDescription('');
         setDueDate('');
         setPriority('medium');
+        setTags('');
     };
 
     return (
@@ -70,8 +77,17 @@ const TaskForm: React.FC<TaskFormProps> = ({onAddTask}: TaskFormProps) => {
                         <option value="high">🔴 High</option>
                     </select>
                 </label>
-
             </div>
+            <label>
+                Tags (comma-separated)
+                <input
+                    type="text"
+                    placeholder="e.g. Work, Personal, Urgent"
+                    value={tags}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setTags(e.target.value)}
+                />
+            </label>
+
 
             <button type="submit" style={{marginTop: '1rem'}}>Add Task</button>
         </form>

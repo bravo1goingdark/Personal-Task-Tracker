@@ -118,3 +118,19 @@
     color: #991b1b;
 }
 
+.task-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag-badge {
+    padding: 4px 8px;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-size: 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}

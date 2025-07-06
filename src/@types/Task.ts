@@ -6,6 +6,7 @@ export interface Task {
     createdAt: string;
     dueDate?: string;
     priority? : 'low' | 'medium' | 'high';
+    tags? : string[];
 }
 
 export interface TaskFormProps {

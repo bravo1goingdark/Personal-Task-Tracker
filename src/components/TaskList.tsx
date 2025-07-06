@@ -102,6 +102,14 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
   </span>
                                     )}
                                 </div>
+                                {task.tags && task.tags.length > 0 && (
+                                    <div className="task-tags">
+                                        {task.tags.map((tag, index) => (
+                                            <span key={index} className="tag-badge">#{tag}</span>
+                                        ))}
+                                    </div>
+                                )}
+
 
 
                                 <div className="task-actions">
