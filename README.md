@@ -1,69 +1,61 @@
-# React + TypeScript + Vite
+# Personal Task Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Description
 
-Currently, two official plugins are available:
+Personal Task Tracker is a simple React-based web app for managing daily tasks efficiently. It features a minimal login
+with username persistence, full task CRUD (Create, Read, Update, Delete) operations, task filtering, and data
+persistence using `localStorage`. The app is designed to be responsive and user-friendly.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Basic login with username saved in `localStorage`
+- Add new tasks with required title and optional description
+- Edit tasks inline or via modal
+- Delete tasks with confirmation prompt
+- Toggle tasks between completed and pending states
+- Display task creation date/time and visual distinction for status
+- Filter tasks by All, Completed, and Pending, with task counts
+- Persist tasks and login state in `localStorage`
+- Bonus features:
+    - Search Functionality
+    - Task priority levels (low, medium, high)
+    - Due dates and tags/categories for tasks
+    - Smooth animation & Dark mode toggle
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Setup Instructions
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bravo1goingdark/Personal-Task-Tracker.git
+2. Navigate to the project directory:
+   ```bash
+    cd Personal-Task-Tracker
+3. Install dependencies:
+   ```bash
+    npm install
+4. Run the app locally:
+   ```bash
+   npm run dev
+5. Open http://localhost:5173/Personal-Task-Tracker/ in your browser.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧰 Technologies Used
+ - React.js (functional components and hooks)
+ - React Router for routing
+ - gh-pages for deploying on github
+ - CSS for styling 
+ - Browser localStorage API for persistence
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔗 Live Demo
+ - Visit https://bravo1goingdark.github.io/Personal-Task-Tracker
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📷 Screenshots
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Login Screen
+![Login](public/username.png)
+
+### Add Task
+![Add Task](public/add-task.png)
+
+### Task DashBoard
+![DashBoard](public/dashboard.png)
