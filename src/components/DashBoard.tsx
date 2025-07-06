@@ -44,6 +44,7 @@ const Dashboard: React.FC<DashboardProps> = ({onLogout}: DashboardProps) => {
 
     const handleDeleteTask: (taskId: number) => void = (taskId: number) => {
         setTasks(tasks.filter(t => t.id !== taskId));
+        setShowForm(false);
     };
 
 

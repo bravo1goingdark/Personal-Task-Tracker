@@ -7,7 +7,7 @@ const App: React.FC = () => {
     const [username, setUsername] = useState<string | null>(localStorage.getItem('username'));
 
     return (
-        <Router>
+        <Router basename="/Personal-Task-Tracker">
             <Routes>
                 <Route path="/" element={
                         !username ? (
