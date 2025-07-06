@@ -89,17 +89,19 @@ const TaskList: React.FC<TaskListProps> = ({tasks, onUpdateTask, onDeleteTask, f
                                     </p>
                                 )}
 
-                                <span className={`status ${task.completed ? 'done' : 'pending'}`}>
+                                <div className="task-badges">
+                                    <span className={`status ${task.completed ? 'done' : 'pending'}`}>
                   {task.completed ? '✅ Completed' : '⏳ Pending'}
                 </span>
 
-                                {task.priority && (
-                                    <span className={`priority-badge ${task.priority}`}>
+                                    {task.priority && (
+                                        <span className={`priority-badge ${task.priority}`}>
     {task.priority === 'low' && '🟢 Low'}
-                                        {task.priority === 'medium' && '🟡 Medium'}
-                                        {task.priority === 'high' && '🔴 High'}
+                                            {task.priority === 'medium' && '🟡 Medium'}
+                                            {task.priority === 'high' && '🔴 High'}
   </span>
-                                )}
+                                    )}
+                                </div>
 
 
                                 <div className="task-actions">
